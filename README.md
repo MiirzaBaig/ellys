@@ -1,4 +1,4 @@
-# Page Selector Component
+# First Test Assignment
 
 A pixel-perfect React component implementation of a page selector UI, replicated from Figma design specifications. This component provides an intuitive interface for selecting multiple pages with checkboxes and includes smooth animations and hover effects.
 
