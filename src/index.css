@@ -1,0 +1,315 @@
+/* Font Imports - Montserrat for text, Inter as fallback */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
+/**
+ * CSS Custom Properties (Variables)
+ * Centralized color and design token definitions
+ */
+:root {
+  --text-primary: #1F2128;      /* Main text color (dark gray/black) */
+  --border-gray: #cdcdcd;       /* Border color for unchecked checkboxes */
+  --button-yellow: #ffd700;     /* Button color (legacy, not used) */
+  --shadow-color: rgba(0, 0, 0, 0.1);  /* Shadow color for container */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/**
+ * Global Body Styles
+ * Centers the component on the page with clean white background
+ * Responsive padding for different screen sizes
+ */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/**
+ * Page Selector Container
+ * Main card container matching Figma specifications:
+ * - Desktop: Fixed width 400px
+ * - Tablet: 90% max-width
+ * - Mobile: Responsive width with proper padding
+ * - Height: Auto (fits content)
+ * - Border radius: 8px
+ * - Subtle shadow for depth
+ * - Smooth transitions for responsive changes
+ */
+.page-selector-container {
+  width: 400px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.3s ease, max-width 0.3s ease;
+}
+
+/**
+ * Separator Line
+ * Thin horizontal line separating sections
+ * - Height: 1px
+ * - Color: Light gray (#E5E5E5)
+ * - Margin: 10px vertical, 15px horizontal (matching Figma padding)
+ */
+.separator {
+  height: 1px;
+  background-color: #E5E5E5;
+  margin: 10px 15px;
+  flex-shrink: 0;
+  transition: margin 0.3s ease;
+}
+
+/**
+ * Button Container
+ * Wrapper for the Done button with padding
+ * Uses margin-top: auto to push button to bottom
+ */
+.button-container {
+  padding: 20px 15px;
+  margin-top: auto;
+  transition: padding 0.3s ease;
+}
+
+/**
+ * Done Button
+ * Primary action button matching Figma specifications:
+ * - Default color: #F5C542 (golden yellow)
+ * - Hover/Active color: #FFD84D (lighter yellow)
+ * - Border radius: 4px
+ * - Typography: Montserrat, 14px, 130% line height
+ * - Smooth color transition on hover/press
+ */
+.done-button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #F5C542;
+  color: #1F2128;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease, border-radius 0.2s ease;
+}
+
+.done-button:hover {
+  background-color: #FFD84D;
+  border-radius: 4px;
+}
+
+.done-button:active {
+  background-color: #FFD84D;
+  border-radius: 4px;
+}
+
+/**
+ * Page Item
+ * Individual selectable page row
+ * - Padding: 12px vertical, 22px horizontal
+ * - Hover effect: Light gray background (#f9f9f9)
+ * - Smooth background transition
+ */
+.page-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, padding 0.3s ease;
+  /* Prevent text selection on interaction */
+  user-select: none;
+  -webkit-user-select: none;
+  /* Remove tap highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-item:hover {
+  background-color: #f9f9f9;
+}
+
+/**
+ * Checkbox Wrapper
+ * Container for the checkbox icon
+ * - Size: 25x25px (matching Figma specifications)
+ * - Prevents checkbox from shrinking
+ */
+.checkbox-wrapper {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/**
+ * Checkbox SVG Animation
+ * Smooth color transition for checkbox fill and stroke
+ * Used when checkbox changes from default to hover/press state
+ */
+.checkbox-wrapper svg rect {
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+/**
+ * Page Text
+ * Typography matching Figma specifications:
+ * - Font: Montserrat (Regular, 400)
+ * - Size: 14px
+ * - Line height: 130%
+ * - Letter spacing: 0px
+ * - Color: #1F2128 (dark gray/black)
+ */
+.text-page {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1F2128;
+  line-height: 130%;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/**
+ * Mobile Devices (up to 480px)
+ * Same size as desktop (400px) but with mobile-optimized spacing
+ * Touch-friendly improvements for better mobile interaction
+ */
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+    align-items: center;
+    transition: padding 0.3s ease;
+  }
+
+  .page-selector-container {
+    width: 400px;
+    max-width: 400px;
+    border-radius: 8px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .page-item {
+    padding: 16px 20px;
+    /* Improved touch target size (minimum 44x44px recommended) */
+    min-height: 48px;
+    /* Prevent text selection on mobile taps */
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: padding 0.3s ease, background-color 0.2s ease;
+  }
+
+  .button-container {
+    padding: 20px 16px;
+    transition: padding 0.3s ease;
+  }
+
+  .separator {
+    margin: 10px 16px;
+    transition: margin 0.3s ease;
+  }
+
+  .done-button {
+    padding: 16px 0;
+    font-size: 15px;
+    /* Improved touch target for button */
+    min-height: 48px;
+    /* Prevent text selection */
+    -webkit-tap-highlight-color: transparent;
+    transition: padding 0.3s ease, font-size 0.3s ease;
+  }
+}
+
+/**
+ * Small Mobile / Large Phone (481px to 640px)
+ * Slightly wider than small mobile but still responsive
+ */
+@media (min-width: 481px) and (max-width: 640px) {
+  body {
+    padding: 16px;
+    transition: padding 0.3s ease;
+  }
+
+  .page-selector-container {
+    width: calc(100% - 32px);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .page-item {
+    padding: 14px 20px;
+    transition: padding 0.3s ease;
+  }
+
+  .button-container {
+    padding: 20px 16px;
+    transition: padding 0.3s ease;
+  }
+}
+
+/**
+ * Tablet Devices (641px to 768px)
+ * Balanced layout with moderate width constraints
+ */
+@media (min-width: 641px) and (max-width: 768px) {
+  body {
+    padding: 20px;
+    transition: padding 0.3s ease;
+  }
+
+  .page-selector-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/**
+ * Small Desktop / Large Tablet (769px to 1024px)
+ * Fixed width with smooth transitions
+ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page-selector-container {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/**
+ * Desktop (1025px and above)
+ * Fixed width matching Figma specifications
+ */
+@media (min-width: 1025px) {
+  .page-selector-container {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
